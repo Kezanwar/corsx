@@ -118,8 +118,6 @@ function filterHeaders(headers: Headers): Headers {
     filtered.set("User-Agent", "corsx/1.0");
   }
 
-  console.log([...filtered.values()]);
-
   return filtered;
 }
 
