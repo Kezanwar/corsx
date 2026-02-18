@@ -1,0 +1,23 @@
+{
+  "name": "corsx",
+  "version": "1.0.0",
+  "description": "A lightweight CORS proxy running on Cloudflare Workers",
+  "main": "worker.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "keywords": [
+    "cors",
+    "proxy",
+    "cloudflare",
+    "workers"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "typescript": "^5.3.3",
+    "wrangler": "^4.66.0"
+  }
+}
