@@ -1,4 +1,4 @@
-# corsx - CORS Proxy (Cloudflare Workers)
+# corsx
 
 corsx is a lightweight CORS proxy running on Cloudflare's edge network. Helps client-side JavaScript fetch content from any URL without CORS restrictions.
 
