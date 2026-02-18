@@ -136,9 +136,13 @@
   </head>
   <body>
     <h1>corsx</h1>
-    <p class="subtitle">Bypass CORS restrictions for client-side JavaScript</p>
+    <p class="subtitle">
+      corsx is a lightweight CORS proxy running on Cloudflare's edge network.
+      Helps client-side JavaScript fetch content from any URL without CORS
+      restrictions.
+    </p>
 
-    <h2>Usage</h2>
+    <h2>API Usage</h2>
     <pre><code>GET /proxy?url=https://example.com</code></pre>
 
     <h2>JavaScript Example</h2>
@@ -168,6 +172,9 @@ const data = await response.text();</code></pre>
       const result_limit = 5000;
       async function tryProxy() {
         const url = document.getElementById("url").value;
+        if (!url) {
+          return;
+        }
         const result = document.getElementById("result");
         result.style.display = "block";
         result.textContent = "Loading...";
