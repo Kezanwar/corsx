@@ -37,6 +37,25 @@ const data = await response.json();
 ```bash
    git clone https://github.com/kezanwar/corsx
    cd corsx
+```
+
+4. Create the rate limit KV namespace:
+
+```bash
+   npx wrangler kv namespace create RATE_LIMIT
+```
+
+5. Copy the ID from the output and update `wrangler.toml`:
+
+```toml
+   [[kv_namespaces]]
+   binding = "RATE_LIMIT"
+   id = "your-id-here"
+```
+
+6. Deploy:
+
+```bash
    wrangler deploy
 ```
 
