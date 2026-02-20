@@ -4,12 +4,12 @@ corsx is a lightweight CORS proxy running on Cloudflare's edge network. Helps cl
 
 ## Live Demo
 
-**[https://corsx.YOUR_SUBDOMAIN.workers.dev](https://corsx.YOUR_SUBDOMAIN.workers.dev)**
+**[https://corsx.kezanwar.workers.dev](https://corsx.kezanwar.workers.dev)**
 
 ## Usage
 
 ```javascript
-const proxyUrl = "https://corsx.YOUR_SUBDOMAIN.workers.dev/proxy";
+const proxyUrl = "https://corsx.kezanwar.workers.dev/proxy";
 const targetUrl = "https://api.example.com/data";
 
 const response = await fetch(
@@ -22,22 +22,23 @@ const data = await response.json();
 
 1. Install Wrangler CLI:
 
-   ```bash
+```bash
    npm install -g wrangler
-   ```
+```
 
 2. Login to Cloudflare:
 
-   ```bash
+```bash
    wrangler login
-   ```
+```
 
 3. Clone and deploy:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/corsx
+
+```bash
+   git clone https://github.com/kezanwar/corsx
    cd corsx
    wrangler deploy
-   ```
+```
 
 That's it. You'll get a URL like `https://corsx.YOUR_SUBDOMAIN.workers.dev`.
 

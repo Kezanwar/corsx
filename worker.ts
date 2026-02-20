@@ -1,8 +1,7 @@
 import landingHtml from "./landing.html";
 
 interface Env {
-  // Add KV namespace here if you want rate limiting later
-  // RATE_LIMIT: KVNamespace;
+  RATE_LIMIT: KVNamespace;
 }
 
 const CORS_HEADERS = {
@@ -18,6 +17,12 @@ export default {
     env: Env,
     ctx: ExecutionContext,
   ): Promise<Response> {
+    const allowed = await checkDailyLimit(env.RATE_LIMIT);
+
+    if (!allowed) {
+      return jsonError("Daily limit reached, try again tomorrow", 429);
+    }
+
     const url = new URL(request.url);
 
     //handle CORS preflight
@@ -39,6 +44,21 @@ export default {
     }
   },
 };
+
+async function checkDailyLimit(kv: KVNamespace): Promise<boolean> {
+  const today = new Date().toISOString().split("T")[0]; // "2024-02-15"
+  const key = `daily:${today}`;
+  const limit = 95000; // buffer under 100k
+
+  const count = parseInt((await kv.get(key)) || "0");
+
+  if (count >= limit) {
+    return false;
+  }
+
+  await kv.put(key, String(count + 1), { expirationTtl: 86400 });
+  return true;
+}
 
 async function handleProxy(request: Request, url: URL): Promise<Response> {
   const targetURL = url.searchParams.get("url");
